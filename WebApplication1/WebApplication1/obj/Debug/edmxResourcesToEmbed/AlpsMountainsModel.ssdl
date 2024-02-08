@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище db_Voynova_6Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="AlpsMountains">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Alp_Id" Type="int" />
+    <Property Name="Mountain_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Mountain">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK__AlpsMount__Alp_I__45F365D3">
+    <End Role="Alp" Type="Self.Alp" Multiplicity="0..1" />
+    <End Role="AlpsMountains" Type="Self.AlpsMountains" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alp">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AlpsMountains">
+        <PropertyRef Name="Alp_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AlpsMount__Mount__46E78A0C">
+    <End Role="Mountain" Type="Self.Mountain" Multiplicity="0..1" />
+    <End Role="AlpsMountains" Type="Self.AlpsMountains" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mountain">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AlpsMountains">
+        <PropertyRef Name="Mountain_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище db_Voynova_6ModelContainer">
+    <EntitySet Name="Alp" EntityType="Self.Alp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AlpsMountains" EntityType="Self.AlpsMountains" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mountain" EntityType="Self.Mountain" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__AlpsMount__Alp_I__45F365D3" Association="Self.FK__AlpsMount__Alp_I__45F365D3">
+      <End Role="Alp" EntitySet="Alp" />
+      <End Role="AlpsMountains" EntitySet="AlpsMountains" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AlpsMount__Mount__46E78A0C" Association="Self.FK__AlpsMount__Mount__46E78A0C">
+      <End Role="Mountain" EntitySet="Mountain" />
+      <End Role="AlpsMountains" EntitySet="AlpsMountains" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

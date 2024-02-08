@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c661a01a195e4047b2ad08cd80ca0a9b" Name="Diagram1">
+        <EntityTypeShape EntityType="db_Voynova_6Model.Alp" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_Voynova_6Model.AlpsMountains" Width="1.5" PointX="3.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_Voynova_6Model.Mountain" Width="1.5" PointX="6.5" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="db_Voynova_6Model.FK__AlpsMount__Alp_I__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="db_Voynova_6Model.FK__AlpsMount__Mount__46E78A0C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

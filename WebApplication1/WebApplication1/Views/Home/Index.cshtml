@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model WebApplication1.Models.SearchResultLine
+
+<input type="text" id="searchName" />
+<br />
+<table id="SearchResultTable" border="1">
+    <thead>
+        <tr>
+            <th scope="col">Имя альпиниста</th>>
+            <th scope="col">Название горы</th>>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.SearchData)
+        {
+            <tr>
+                <td>@item.AlpName</td>
+                <td>@item.MountainName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+
+
+<a href="/Home/GetWord">Get Word</a>
+<br />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    var inputText = document.getElementById("searchName");
+    function changeOption() {
+        var txt = inputText.value;
+        $.ajax({
+            url: '/Home/Index?pattern=' + txt,
+            type: 'GET',
+            success: function (data) {
+                $("#SearchResultTable tbody tr").remove();
+                for (let i = 0; i < data.length; i++) {
+                    $('#SearchResultTable > tbody:last-child').append('<tr><th scope="row">'
+                        + data[i].AlpName + '</td><td>'
+                        + data[i].MountainName + '</td><td>');
+                }
+            }
+        });
+    }
+    inputText.addEventListener("input", changeOption);
+</script>

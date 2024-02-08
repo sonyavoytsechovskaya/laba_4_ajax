@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_Voynova_6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Alp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AlpsMountains" Relationship="Self.FK__AlpsMount__Alp_I__45F365D3" FromRole="Alp" ToRole="AlpsMountains" />
+  </EntityType>
+  <EntityType Name="AlpsMountains">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Alp_Id" Type="Int32" />
+    <Property Name="Mountain_Id" Type="Int32" />
+    <NavigationProperty Name="Alp" Relationship="Self.FK__AlpsMount__Alp_I__45F365D3" FromRole="AlpsMountains" ToRole="Alp" />
+    <NavigationProperty Name="Mountain" Relationship="Self.FK__AlpsMount__Mount__46E78A0C" FromRole="AlpsMountains" ToRole="Mountain" />
+  </EntityType>
+  <EntityType Name="Mountain">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AlpsMountains" Relationship="Self.FK__AlpsMount__Mount__46E78A0C" FromRole="Mountain" ToRole="AlpsMountains" />
+  </EntityType>
+  <Association Name="FK__AlpsMount__Alp_I__45F365D3">
+    <End Role="Alp" Type="Self.Alp" Multiplicity="0..1" />
+    <End Role="AlpsMountains" Type="Self.AlpsMountains" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alp">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AlpsMountains">
+        <PropertyRef Name="Alp_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AlpsMount__Mount__46E78A0C">
+    <End Role="Mountain" Type="Self.Mountain" Multiplicity="0..1" />
+    <End Role="AlpsMountains" Type="Self.AlpsMountains" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mountain">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AlpsMountains">
+        <PropertyRef Name="Mountain_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_Voynova_6Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alp" EntityType="Self.Alp" />
+    <EntitySet Name="AlpsMountains" EntityType="Self.AlpsMountains" />
+    <EntitySet Name="Mountain" EntityType="Self.Mountain" />
+    <AssociationSet Name="FK__AlpsMount__Alp_I__45F365D3" Association="Self.FK__AlpsMount__Alp_I__45F365D3">
+      <End Role="Alp" EntitySet="Alp" />
+      <End Role="AlpsMountains" EntitySet="AlpsMountains" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AlpsMount__Mount__46E78A0C" Association="Self.FK__AlpsMount__Mount__46E78A0C">
+      <End Role="Mountain" EntitySet="Mountain" />
+      <End Role="AlpsMountains" EntitySet="AlpsMountains" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
